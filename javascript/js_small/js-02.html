@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <p>Paragraph One</p>
+    <p>Hello <b><span id="person">Ivan</span></b></p>
+    <script type="text/javascript">
+        st = document.getElementById('person').innerHTML;
+        console.log('ST ='+st);
+        console.dir(document.getElementById('person'));
+        alert('Hi there '+ st);
+        document.getElementById('person').innerHTML='Bowen';
+        console.log("First log");
+        alert("Here I am");
+        document.write("<p>Hello World</p>")
+    </script>
+    <noscript>Your browser doesn't support or has disabled JavaScript</noscript>
+    <p>Second Paragraph</p>
+    <script type="text/javascript">
+        gl = 123;
+        function product(a,b){
+            value = a * b;
+            return value;
+        }
+        function check(){
+            var gl = 456; // after adding "var" it becomes local now and
+            // the global one wont change
+            console.log("Local gl= "+ gl);
+;        }
+        check();
+        window.console && console.log("GL = "+ gl);
+        console.log('prod ='+ product(4,5));
+    </script>
+    <a href="#" onClick="alert('Hi'); return false;">Click me</a>
+  </body>
+</html>

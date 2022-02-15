@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+            <a href="#" onclick="document.getElementById('stuff').innerHTML='BACK'; return false;">BACK</a>
+            <a href="#" onclick="document.getElementById('stuff').innerHTML='FORTH'; return false;">FORTH</a>
+            <p><span id="stuff">STUFF</span></p>
+        <p>
+            <a href="#" onclick="add(); return false;">More</a>
+        </p>
+        <ul id="the-list">
+            <li>First Item</li>
+        </ul>
+        <script type="text/javascript">
+            counter = 1;
+            console.log(document.getElementById('the-list'));
+            function add() {
+                var x = document.createElement('li');
+                x.ClassName = 'list-item';
+                x.innerHTML = 'The counter is '+ counter;
+                document.getElementById('the-list').appendChild(x);
+                counter++;
+            }
+        </script>
+
+    </body>
+</html>

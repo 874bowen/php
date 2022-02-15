@@ -1,0 +1,842 @@
+
+<script>
+
+    function wordBlanks(myNoun, myAdjective, myVerb, myAdverb){
+        var result = "";
+        result += "The " + " "+  myAdjective + " "+ myNoun + " "+ myVerb + " to the store " + myAdverb;
+        return result;
+    }
+    console.log(wordBlanks("dog", "big", "ran", "quickly"));
+    console.log(wordBlanks("bike", "slow", "flew", "slowly"));
+
+    var ourArray = [["John", 23], ["everything", 1010], ["lovely", 345]];
+    ourArray[0] = ["everyday", 33, 45, "Bowen"];
+    console.log(ourArray[0][3]);
+
+    // append data at end of the array
+    ourArray.push(["Idah", 14, "sis"], ["Ian", 23, "Bro"])
+    console.log(ourArray);
+    console.log(ourArray[2][2]);
+
+    // remove the last thing in the array with pop()
+    var removedFromArray = ourArray.pop();
+    console.log(removedFromArray);
+    console.log(ourArray);
+
+    // manipulate (remove first thing) the array with shift()
+    var removedFromOurArray = ourArray.shift();
+    console.log(removedFromOurArray);
+    console.log(ourArray);
+
+    // unshift adds element to the start of the array
+    ourArray.unshift(["This", 1, "added to front"]);
+    console.log(ourArray);
+
+    //FUNCTIONS
+    function ourReusableFunction(name) {
+        console.log("Heyya, "+ name);
+    }
+    ourReusableFunction("Ivan");
+
+    function subtMath(a, b) {
+        if (a>b){
+            console.log(a-b);
+        }
+        else if (a == b){
+            console.log("a and b are equal");
+        }
+        else{
+            console.log(a+b);
+        }
+    }
+    subtMath(23,40);
+    subtMath(34, 12);
+    subtMath(25, 25);
+
+    var myGlobal = 10;
+
+    function fun1() {
+        //var keyword makes it local to the scope 
+        //and is only visible to the function 
+        //var oopsGlobal = 5;
+        //WITHOUT VAR IT BECOMES GLOBAL AUTOMATICALLY
+        oopsGlobal = 5;
+    }
+    function fun2() {
+        output = "";
+        if (typeof myGlobal != "undefined"){
+            output += "myGlobal: "+myGlobal;
+        }
+        if (typeof oopsGlobal != "undefined"){
+            output += "oopsGlobal: " +oopsGlobal; 
+        }
+        console.log(output);
+    }
+    fun1();
+    fun2();
+
+    var outerWear = "T-Shirt";
+    function myOutfit() {
+        var outerWear = "sweater";
+        return outerWear;
+    }
+    // local var takes precedence
+    console.log(myOutfit());
+    console.log(outerWear);
+
+    var sum = 0;
+    function addThree() {
+        sum += 3;
+        // return sum;
+    }
+    // becomes undefined when there is no return value in function
+    console.log(addThree());
+
+    // queue functionality in js
+    function nextInLine(arr, item) {
+        arr.push(item);
+        return arr.shift();
+    }
+
+    var testArr = [1,2,3,4,5];
+    console.log("Before: " + JSON.stringify(testArr));
+    console.log(nextInLine(testArr, 6));
+    console.log("After: " + JSON.stringify(testArr));
+
+    function ourTrueOrFalse(val) {
+        /* '===' / !== checks also for type conversion
+        '==' / != tries to see whether they are equal regardless of type
+        does the string conversion*/
+        if(val === 10){
+            return "Yes, it is Equal"
+        }
+        return "Not Equal"
+        
+    }
+    console.log(ourTrueOrFalse('10'));
+
+    //logical AND or Logical OR
+    function testLogicalAnd(val) {
+        if (val <= 50 && val >=25) {
+            return "Yes";
+            // if (val >= 25) {
+            //     return "Yes";
+            // }
+        }
+        return "No"
+    }
+    console.log(testLogicalAnd(34));
+    
+    var names = ["Hole-in-one!", "Eagle", "Birdie", "Par", "Bogey",
+    "Double Boogey", "Go Home!"]
+    function golfScore(par, strokes) {
+        if (strokes == 1) {
+            return names[0];
+        }
+        else if(strokes <= par-2){
+            return names[1];
+        }
+        else if(strokes == par-1){
+            return names[2];
+        }
+        else if(strokes == par){
+            return names[3];
+        }
+        else if(strokes == par+1){
+            return names[4];
+        }
+        else if(strokes == par+2){
+            return names[5];
+        }
+        else if(strokes >= par+3){
+            return names[6];
+        } else{
+            return "Change Me"
+        }
+    }
+    console.log(golfScore(5, 1));
+
+    // switch statement
+    function caseInSwitch(val) {
+        var answer = "";
+        switch(val){
+            case 1:
+                answer = "alpha";
+                break;
+            case 2:
+                answer = "beta";
+                break;
+            case 3:
+                answer = "gamma";
+                break;
+            case 4:
+                answer = "delta";
+                break;
+            default:
+                answer = "not in the range"
+                break;
+        }
+        return answer;
+    }
+    console.log(caseInSwitch(1));
+    console.log(caseInSwitch(12));
+    console.log(caseInSwitch(3));
+    console.log(caseInSwitch(6));
+
+    //multiple identical options in Switch Statements
+    //its better sometimes to use switch than to use if else
+    function sequentialSizes(val) {
+        var answer = "";
+        switch (val) {
+            case 1:
+            case 2:
+            case 3:  
+                answer ="low";
+                break;
+            case 4:
+            case 5:
+            case 6:  
+                answer ="mid";
+                break;
+            case 7:
+            case 8:
+            case 9:  
+                answer ="high";
+                break;
+            default:
+                break;
+        }
+        return answer;
+    }
+    console.log(sequentialSizes(2));
+    console.log(sequentialSizes(5));
+    console.log(sequentialSizes(9));
+
+    //returning boolean values from functions
+    function isLess(a, b) {
+        /*ALL COMPARISON OPERATORS RETURN A BOOLEAN
+        TRUE OR FALSE VALUE*/
+        return a < b;
+        // if (a<b) {
+        //     return true;
+        // } else{
+        //     return false;
+        // }
+    }
+    console.log(isLess(10,15));
+    console.log(isLess(32,15));
+
+    // returning early pattern from functions
+     function abTest(a,b) {
+         if (a<0 || b<0) {
+             return undefined;
+         }
+         return Math.round(Math.pow(Math.sqrt(a)+ Math.sqrt(b), 2));
+     }
+     console.log(abTest(16, 25));
+
+     //card count
+     var count = 0;
+     function cc(card) {
+         switch (card) {
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+                count++;
+                break;
+            case 10:
+            case "J":
+            case "Q": 
+            case "K":
+            case "A":
+                count--;    
+                break;
+         }
+        var holdbet = "Hold";
+        if (count > 0) {
+            holdbet = "Bet";
+        }
+        return count +" "+holdbet;
+    }
+    console.log(cc("J"));
+    console.log(cc(3));
+    console.log(cc(2));
+    console.log(cc(6));
+    console.log(cc(7));
+
+    // JS OBJECTS
+    var ourDog = {
+        "name": "Camper",
+        "legs": 4,
+        "tails": 1,
+        "friends": ["everything!"],
+        "its home": "Carlifornia"
+    };
+    console.log(ourDog);
+    //updating values
+    ourDog.name = "Ivan Bowen";
+    ourDog["its home"] = "Eldoret";
+    //add property
+    ourDog.bark = "bow-wow";
+    ourDog["its color"] = "white";
+    delete ourDog.friends;
+    console.log(ourDog);
+    // accessing property
+    console.log(ourDog.legs);
+    // you can use bracket notation anywhere 
+    // REQUIRED when the value has spaces 
+    console.log(ourDog["friends"]);
+    console.log(ourDog['its home']);
+    var testObj = {
+        12: "Ivan",
+        16: "Ronaldo",
+        15: "Messi"
+    }
+    var platerNumber = 16;
+    var player = testObj[platerNumber];
+    console.log(player);
+    // you can use an object in place of Switch Statement (easier)
+    var myObj = {
+        gift : "pony",
+        pet : "kitten",
+        bed : "sleigh"
+    };
+
+    function checkObj(checkProp) {
+        if (myObj.hasOwnProperty(checkProp)){
+            return myObj[checkProp];
+        } else {
+            return "Not found";
+        }
+    }
+    console.log(checkObj("gift"));
+    
+    //complex objects
+    var myMusic = [
+        {
+            "artist" : "Billy Joel",
+            "title" : "Piano Man",
+            "release_year" : 1973,
+            "formats" : [
+                "CD",
+                "8T",
+                "LP"
+            ],
+            "gold" : true
+        },
+        {
+            "artist" : "Ivan Bowen",
+            "title" : "Cereal Killer",
+            "release_year" : 2022,
+            "formats" : [
+                "YouTube Video",
+                "MP4",
+                "YT"
+            ],
+            "gold" : true
+        },
+    ];
+    var secondMusic = myMusic[1].formats[2];
+    console.log(secondMusic);
+    console.log(myMusic);
+    
+    var myStorage = {
+        "car" : {
+            "inside": {
+                "glove box": "maps",
+                "passenger seat": "crumbs"
+            },
+            "outside": {
+                "trunk": "jack"
+            }
+        }
+    };
+    var gloveBoxContents = myStorage.car.inside["glove box"];
+    
+    console.log(gloveBoxContents);
+
+    var collection = {
+        "2548": {
+            "album": "Slippery When Wet",
+            "artist": "Bon Jovi",
+            "tracks": [
+                "Let It Rock",
+                "You Give Love a Bad Name"
+            ]
+        },
+        "2468":{
+            "album": "1999",
+            "artist": "Prince",
+            "tracks": [
+                "1999",
+                "Little Red Corvette "
+            ]
+        },
+        "1268": {
+            "album": "Slippery When Wet",
+            "tracks": [ ]
+        },
+        "5439": {
+            "album": "ABBA Gold"
+        }
+    };
+    var collectCopy = JSON.parse(JSON.stringify(collection));
+
+    function updateRecords(id, prop, value) {
+        if(value === ""){
+            delete collection[id][prop];
+        } else if (prop === "tracks"){
+            collection[id][prop] = collection[id][prop] || []
+            collection[id][prop].push(value);
+        } else {
+            collection[id][prop] = value;
+        }
+        return collection;
+    }
+    console.log(updateRecords(2468, "tracks", "test"));
+    console.log(updateRecords(5439, "artist", "ABBA"));
+
+    var myArrayy = [];
+
+    var i = 0;
+    while(i < 5){
+        myArrayy.push(i);
+        i++;
+    }
+    console.log(myArrayy);
+    var ourArrayy = [];
+
+    for(var i=0; i<10; i+=2){
+        ourArrayy.push(i);
+    }
+    var ourTotal = 0;
+    console.log(ourArrayy);
+    for (var i = 0; i<ourArrayy.length; i++){
+        ourTotal += ourArrayy[i];
+    }
+    console.log(ourTotal);
+
+    var product = 1;
+    function multiplyAll(arr) {
+        var product = 1;
+        for (var i = 0; i < arr.length; i++) {
+            for (var j = 0; j < arr[i].length; j++){
+                product *= arr[i][j];
+            }
+        }
+        return product;
+    }
+    var product = multiplyAll([[1,2], [3,4], [5,6,7]]);
+    console.log(product);
+
+    var contacts = [
+        {
+            "firstName" : "Akira",
+            "lastName" : "Laine",
+            "number" : "0543236543",
+            "likes" : ["Pizza", "Coding", "Brownie Points"]
+        },
+        {
+            "firstName" : "Harry",
+            "lastName" : "Potter",
+            "number" : "0994372684",
+            "likes" : ["Hogwarts", "Magic", "Hagrid"]
+        },
+        {
+            "firstName" : "Sherlock",
+            "lastName" : "Holmes",
+            "number" : "0487345643",
+            "likes" : ["Intriguing Cases", "Violin"]
+        },
+        {
+            "firstName" : "Kristian",
+            "lastName" : "Vos",
+            "number" : "unknown",
+            "likes" : ["Javascript", "Gaming", "Foxes"]
+        }
+    ];
+
+    // pass name and prop
+    var val = "";
+    function lookUpProfile(name, prop) {
+        for (var i = 0; i < contacts.length; i++){
+            if (contacts[i]["firstName"] === name){
+                val = contacts[i][prop];
+                return val || "No such property";
+            }
+        }
+        return "no such content!";
+    }
+    var data = lookUpProfile("Akira", "likes");
+    var data1 = lookUpProfile("Kristian", "free")
+    console.log(data);
+    console.log(data1);
+
+    // create random Fractions ) to 1 but not including 1
+    function randomFraction() {
+        
+        return Math.random();
+    }
+    console.log(randomFraction());
+    
+    // random whole number round down with math.floor
+    var randomNumberBetween0to19 = Math.floor(Math.random()*20)
+    console.log(randomNumberBetween0to19);
+    function randomWholeNum() {
+        
+        return Math.floor(Math.random()*50);
+    }
+    console.log(randomWholeNum());
+    
+    //Random whole number within range
+    function ourRandomRange(ourMin, ourMax) {
+        
+        return Math.floor(Math.random() * (ourMax-ourMin+1)) + ourMin;
+    }
+    console.log(ourRandomRange(1, 9));
+
+    //pasrseInt takes a string and convert Int can be used with radix
+    function convertToInt(str) {
+        return parseInt(str);
+    }
+    console.log(convertToInt("56"));
+
+    function convertToInteger(str) {
+        return parseInt(str, 2);
+    }
+    console.log(convertToInteger("11010"));
+
+    //ternary operator
+    //condition ? statement-if-true : statement-if-false;
+    function checkEqual(a, b) {
+        return a === b ? true : false; 
+        // same as line below
+        return a === b;
+        /*if (a === b) {
+            return true;
+        } else {
+            return false;
+        }*/
+    }
+    console.log(checkEqual(1, 2));
+
+    function checkSign(num) {
+        return num > 0 ? "positive" : num < 0 ? "negative" : "zero"
+    }
+    console.log(checkSign(-1));
+
+    /* let and var
+    let does not let you declare a variable twice*/
+    let catName = "Quincy";
+    // var catName = "Quincy";
+    var quote;
+    catName = "Beau";
+    // var catName = "Beau";
+    function catTalk() {
+        "use strict"; // ENABLES STRICT MODE WHICH CATCHES COMMON CODING MISTAKES
+        catName = "Oliver";
+        quote = catName + " says Meow!";
+        return quote;
+    }
+    console.log(catTalk());
+    // SCOPES OF VAR AND LET
+    /*VAR IS DECLARED GLOBALLY OR LOCALLY IF INSIDE A FUNCTION
+    LET SCOPE IS LIMITED TO BLOCCK WHERE IT WAS DECLARED*/
+
+    function checkScope() {
+        "use strict";
+        let i = "function scope";
+        if (true) {
+            let i = "block scope";
+            console.log("Block scope i is: ", i);
+        }
+        console.log("Function scope i is: ", i);
+        return i;
+    }
+    console.log(checkScope());
+
+    //Const (READ-ONLY)
+    function printManyTimes(str) {
+        "use strict";
+        const SENTENCE = str + " is cool!";
+        // sentence = str + " is amazing!";
+        for (let index = 0; index < str.length; index+=2) {
+            // const element = array[index];
+            console.log(SENTENCE);
+        }
+        return SENTENCE;
+    }
+    console.log(printManyTimes("freecodecamp"));
+
+    //mutate an array with const
+    const S = [5, 7, 2];
+    function editInPlace() {
+        "use strict";
+        // S = [2, 5, 7]
+        S[0] = 2;
+        S[1] = 5;
+        S[2] = 7;
+        return S;
+    }
+    console.log(editInPlace());
+
+    //freezing to prevent mutation of Object constants
+    function freezeObj() {
+        "use strict";
+        const MATH_CONSTANTS = {
+            PI: 3.14
+        };
+        Object.freeze(MATH_CONSTANTS);
+        try {
+            MATH_CONSTANTS.PI = 99;
+        } catch (error) {
+            console.log(error);
+        }
+        return MATH_CONSTANTS.PI;
+    }
+    const PI = freezeObj();
+    console.log(PI);
+
+    //Arrow functions to write concise Anonymous Functions
+    const magic = () => new Date();
+    console.log(magic);
+
+    const myConcat = (arr1, arr2) => arr1.concat(arr2);
+    console.log(myConcat([1,2], [3,4,5]));
+
+    //Map, Filter and Reduce -> higher order functions 
+    //with arrow functions
+    const realNumArr = [1, 5.6, -9.8, 3.14, 42, 6, 8.34, -2];
+
+    const squareList = (arr) => {
+        // for single arguments you can jsut put the arg without parentheses
+        const squaredIntegers = arr.filter(num => 
+        Number.isInteger(num) && num >0).map(x => x*x);
+        return squaredIntegers;
+    };
+    const squaredIntegers = squareList(realNumArr);
+    console.log(squaredIntegers);
+
+    //Higher Order Arrow Functions
+    const increment = (function() {
+        return function increment(num, value = 1) {
+            return num + value;
+        };
+    })();
+    console.log(increment(5, 2));
+    console.log(increment(5));
+
+    //rest operator -- gives infinite arguments
+    const SUM = (function () {
+        return function sum(...args) {
+            // const args = [x, y, z];
+            return args.reduce((a, b)=>a+b, 0);
+        }
+    })();
+    console.log(SUM(1, 2, 3, 4));
+
+    //spread operator -- spreads array and have a copy
+    const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
+    let arr2;
+    (function() {
+        arr2 = [...arr1];
+        arr1[0] = 'potato';
+    })();
+    console.log(arr2);
+
+    var voxel = {x: 3.6, y: 7.4, z:6.54};
+    // old way of copying value
+    var x = voxel.x;
+    var y = voxel.y;
+    var z = voxel.z;
+
+    //get field of x,y,z and copy  it to a,b,c
+    const { x : a, y : b, z : c } =  voxel;
+
+    const AVG_TEMPERATURES = {
+        today: 77.5,
+        tomorrow: 79
+    };
+    function getTempOfTmrw(avgTemperatures) {
+        "use strict";
+        const {tomorrow : tempOfTomorrow} = avgTemperatures;
+        return tempOfTomorrow;
+    }
+    console.log(getTempOfTmrw(AVG_TEMPERATURES));
+
+    //destructuring assignment with nested objects
+    const LOCAL_FORECAST = {
+        today : {min : 72, max : 83},
+        tomorrow : {min : 73.3, max : 84.6} 
+    };
+    function getMaxOfTmrw(forecast) {
+        "use strict";
+        const { tomorrow : {max : maxOfTomorrow}} = forecast;
+        return maxOfTomorrow;
+    }
+    console.log(getMaxOfTmrw(LOCAL_FORECAST));
+
+    //destructuring in arrays
+    const [s, o, , p] = [1, 2, 3, 4, 5, 6];
+    console.log(s, o, p);
+
+    let e = 8, f = 6; 
+    (()=>{
+        "use strict";
+        [e, f] = [f, e]
+    })();
+    console.log(e);
+    console.log(f);
+
+    //destructuring assignment with rest operator
+    const source = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    function removeFirstTwo(list) {
+        const [, , ...arr] = list;
+
+        return arr;
+    }
+    const arr = removeFirstTwo(source);
+    console.log(arr);
+    console.log(source);
+
+    //destructuring assignment to pass an object as a function's params
+    //used with API oftenly
+
+    const stats = {
+        max : 56.78,
+        standard_deviation : 4.34, 
+        median : 34.54,
+        mode : 23.87,
+        min : -0.75,
+        average : 35.85
+    };
+
+    const half = (function () {
+        return function half( { max, min } ) {
+            return (max + stats) / 2.0;
+        };
+    })();
+    console.log(stats);
+    console.log(half(stats));
+
+    // create strings with template literals
+    const person = {
+        name : "Ivan Bowen",
+        age : 19
+    };
+    // Template literal (`back-ticks`) with multi-line and string interpolation
+    const greeting = `Hello , my name is ${person.name}!
+    I am ${person.age} years old.`; 
+    console.log(greeting);
+
+    const result = {
+        success : ["max-length", "no-amd", "prefer-arrow-functions"], 
+        failure : ["no-var", "var-on-top", "linebreak"],
+        skipped : ["id-blacklist", "no-dup-keys"]
+    };
+    function makeList(arr) {
+        const resultDisplayArray = [];
+        for (let index = 0; index < arr.length; index++) {
+            resultDisplayArray.push(`<li class="text-warning">${arr[index]}</li>`);
+            
+        }
+        
+        return resultDisplayArray;
+    };
+    const resultDisplayArray = makeList(result.failure);
+    console.log(resultDisplayArray);
+
+    //write consise Object Literal Declarations Using Simple Fields
+    const createPerson = (name, age, gender) => ( {name, age, gender} )
+        // return {
+        //     name : name,
+        //     age : age,
+        //     gender : gender
+        // };
+    // };
+    console.log(createPerson("Ian Kiprono", 23, "male"));
+
+    const bicycle = {
+        gear : 2, 
+        setGear(newGear) {
+            "use strict";
+            this.gear = newGear;
+        }
+        // setGear : function (newGear) {
+        //     "use strict";
+        //     this.gear = newGear;
+        // }
+    };
+    bicycle.setGear(3);
+    console.log(bicycle.gear);
+
+    // var spaceShutter = function (targetPlanet) {
+    //     this.targetPlanet = targetPlanet;
+    // }
+    class spaceShutter {
+        constructor(targetPlanet) {
+        this.targetPlanet = targetPlanet;
+    }
+}
+    var zeus = new spaceShutter('Jupiter');
+    console.log(zeus.targetPlanet);
+
+    function  makeClass () {
+        class Vegetable {
+            constructor(name){
+            this.name = name;
+            }
+        }
+        return Vegetable;
+    }
+    const Vegetable = makeClass();
+    var carrot  = new Vegetable('carrot');
+    console.log(carrot.name);
+
+    //Use getters and settersto control access to an object
+    class Book {
+        constructor(author) {
+            this._author = author; //private
+        }
+        /*getter -- get a value of the objects private
+        variable without tthe user directly accessing the 
+        private variable 
+        */
+        get writer(){
+            return this._author;
+        }
+        /*setter -- not directly interacting with the private
+        variable and update*/
+        set writer(updatedAuthor){
+            this._author = updatedAuthor;
+        }
+    }
+    function makeClass() {
+        class Thermostat{
+        constructor(temp){
+            //_ mean itss private
+            this._temp = 5/9*(temp-32);
+        }
+        get temperature(){
+            return this._temp;
+        }
+        set temperature(updatedTemp){
+            this._temp = updatedTemp;
+        }
+    }
+        return Thermostat;
+    }
+    const Thermostat = makeClass();
+    const thermos = new Thermostat(76);
+    let temp = thermos.temperature;
+    thermos.temperature = 26;
+    temp = thermos.temperature;
+    console.log(temp);
+
+    //import and require
+    
+    const cap = capitalizeString("hello!");
+    console.log(cap);
+</script>
